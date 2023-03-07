@@ -9,8 +9,17 @@ extern crate rocket;
 use api::user_api::create_user;
 use repository::mongodb_repo::MongoRepo;
 
+#[get("/")]
+fn index() -> &'static str {
+    "Hello, world! Bienvenue sur notre super backend LocalEat !"
+}
+
 #[launch]
 fn rocket() -> _ {
     let db = MongoRepo::init();
-    rocket::build().manage(db).mount("/", routes![create_user])
+    rocket::build()
+        .manage(db)
+        .mount("/", routes![index])
+        .mount("/", routes![create_user])
+        
 }
