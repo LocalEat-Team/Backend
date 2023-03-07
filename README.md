@@ -8,3 +8,6 @@ Configutation MongoDB :
  - Ajouter la variable : 
 MONGOURI=mongodb+srv://<nomUtilisateur>:<password>@clusterlocaleat.ywvwbpn.mongodb.net/?retryWrites=true&w=majority
 
+
+Tuto de référence :
+https://medium.com/geekculture/build-a-rest-api-with-rust-and-mongodb-rocket-version-7ea90ebd9fe7
