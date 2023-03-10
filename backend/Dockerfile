@@ -1,10 +1,7 @@
 from rust:latest
 WORKDIR .
 
-COPY ./src ./src
-COPY ./.env ./.env
-COPY ./Cargo.toml ./Cargo.toml 
-COPY ./Rocket.toml ./Rocket.toml
+COPY . .
 
 RUN cargo fetch
 EXPOSE 80
