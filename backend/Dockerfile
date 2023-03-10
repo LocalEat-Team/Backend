@@ -3,7 +3,7 @@ WORKDIR .
 
 COPY ./src ./src
 COPY ./.env ./.env
-COPY ./Cargo.toml /Cargo.toml 
+COPY ./Cargo.toml ./Cargo.toml 
 COPY ./Rocket.toml ./Rocket.toml
 
 RUN cargo fetch
