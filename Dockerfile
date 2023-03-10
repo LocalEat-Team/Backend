@@ -3,7 +3,7 @@ WORKDIR .
 
 COPY . .
 
-#RUN cargo fetch e
+#RUN cargo fetch 
 EXPOSE 8000
 # Chargement du profil 'release' défini dans le fichier Rocket.toml
 CMD [ "cargo", "run", "--release" ]
