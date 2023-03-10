@@ -19,6 +19,17 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
+    - name: rustup toolchain install
+    - uses: dtolnay/rust-toolchain@v1
+    - run : rustup target add x86_64-unknown-linux-musl
+   
+
+
+    - name: rust-cargo
+      uses: actions-rs/cargo@v1.0.1
+    - run : cargo build --release --target x86_64-unknown-linux-musl
+
+
     - name: Log in to registry
       uses: docker/login-action@v1
       with:
