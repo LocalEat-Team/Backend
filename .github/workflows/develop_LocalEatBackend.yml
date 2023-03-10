@@ -50,4 +50,4 @@ jobs:
         app-name: 'LocalEatBackend'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_e014d16f44d94cfd9a3477e414fdedea }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_89c064f03f704a5ebd2fd5fc738f3b6f }}/guiletjulien/localeat:${{ github.sha }}'
+        images: 'index.docker.io/guiletjulien/localeat:${{ github.sha }}'
