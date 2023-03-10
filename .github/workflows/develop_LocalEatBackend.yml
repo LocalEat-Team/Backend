@@ -21,15 +21,12 @@ jobs:
 
     - name: brndnmtthws/rust-action-rustup
       uses: brndnmtthws/rust-action-rustup@v1.0.0
-      with:
-        targets: add x86_64-unknown-linux-musl
 
-   
     - name: rust-cargo
       uses: actions-rs/cargo@v1.0.1
       with :
         command : build
-        args : --release --target x86_64-unknown-linux-musl
+        args : --release --target stable-x86_64-unknown-linux-gnu
 
     - name: Log in to registry
       uses: docker/login-action@v1
