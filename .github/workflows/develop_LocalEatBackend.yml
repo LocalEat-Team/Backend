@@ -32,7 +32,7 @@ jobs:
         push: true
         context: .
         tags: index.docker.io/guiletjulien/localeat:${{ github.sha }}
-        file: ./backend/Dockerfile
+        file: ./Dockerfile
 
 
   deploy:
