@@ -11,7 +11,7 @@ use repository::mongodb_repo::MongoRepo;
 
 #[get("/")]
 fn index() -> &'static str {
-    "Hello, world! Bienvenue sur notre super backend LocalEat !"
+    "Hello, world! Bienvenue sur notre super backend LocalEat ! Cette version est déployé grâce à une intégration continue"
 }
 
 #[launch]
