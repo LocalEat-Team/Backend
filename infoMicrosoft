@@ -1,0 +1,5 @@
+acrName = registerylocaleat
+ressource group = ResourceGroupLocalEat
+
+Doc TRES UTILE :
+https://learn.microsoft.com/en-us/azure/container-instances/tutorial-docker-compose#prerequisites
