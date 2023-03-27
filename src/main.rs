@@ -7,6 +7,7 @@ extern crate rocket;
 
 //add imports below
 use api::user_api::create_user;
+use api::product_api::get_all_products;
 use repository::mongodb_repo::MongoRepo;
 
 #[get("/")]
@@ -21,5 +22,6 @@ fn rocket() -> _ {
         .manage(db)
         .mount("/", routes![index])
         .mount("/", routes![create_user])
+        .mount("/", routes![get_all_products])
         
 }
