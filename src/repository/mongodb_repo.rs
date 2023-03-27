@@ -3,14 +3,15 @@ extern crate dotenv;
 use dotenv::dotenv;
 
 use mongodb::{
-    bson::{extjson::de::Error},
+    bson::{extjson::de::Error, oid::ObjectId, doc},
     results::{ InsertOneResult},
     sync::{Client, Collection},
 };
-use crate::models::user_model::User;
+use crate::models::{user_model::User, product_model::Product};
 
 pub struct MongoRepo {
-    col: Collection<User>,
+    colUser: Collection<User>,
+    colProduct: Collection<Product>
 }
 
 impl MongoRepo {
@@ -22,8 +23,9 @@ impl MongoRepo {
         };
         let client = Client::with_uri_str(uri).unwrap();
         let db = client.database("rustDB");
-        let col: Collection<User> = db.collection("User");
-        MongoRepo { col }
+        let colUser: Collection<User> = db.collection("User");
+        let colProduct: Collection<Product> = db.collection("Product");
+        MongoRepo { colUser, colProduct }
     }
 
     pub fn create_user(&self, new_user: User) -> Result<InsertOneResult, Error> {
@@ -34,10 +36,21 @@ impl MongoRepo {
             title: new_user.title,
         };
         let user = self
-            .col
+            .colUser
             .insert_one(new_doc, None)
             .ok()
             .expect("Error creating user");
         Ok(user)
+    }
+
+    pub fn get_products(&self) -> Result<Vec<Product>, Error> {
+
+        let cursors = self
+            .colProduct
+            .find(None, None)
+            .ok()
+            .expect("Error getting list of products");
+        let users = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(users)
     }
 }
