@@ -10,7 +10,7 @@ use api::user_api::create_user;
 use api::product_api::get_all_products;
 use repository::mongodb_repo::MongoRepo;
 use rocket::{http::{Method, Header}, fairing::{Fairing, Info, Kind}, Request, Response};
-use rocket_cors::{AllowedOrigins, CorsOptions};
+
 
 
 #[get("/")]
