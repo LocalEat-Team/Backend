@@ -8,9 +8,11 @@ use mongodb::{
     sync::{Client, Collection},
 };
 use crate::models::user_model::User;
+use crate::models::product_model::Product;
 
 pub struct MongoRepo {
     col: Collection<User>,
+    colP: Collection<Product>,
 }
 
 impl MongoRepo {
@@ -23,7 +25,8 @@ impl MongoRepo {
         let client = Client::with_uri_str(uri).unwrap();
         let db = client.database("rustDB");
         let col: Collection<User> = db.collection("User");
-        MongoRepo { col }
+        let colP: Collection<Product> = db.collection("Product");
+        MongoRepo { col, colP }
     }
 
     pub fn create_user(&self, new_user: User) -> Result<InsertOneResult, Error> {
@@ -39,5 +42,20 @@ impl MongoRepo {
             .ok()
             .expect("Error creating user");
         Ok(user)
+    }
+
+    pub fn create_product(&self, new_product: Product) -> Result<InsertOneResult, Error> {
+        let new_doc = Product {
+            id: None,
+            productname: new_product.productname,
+            description: new_product.description,
+            price: new_product.price,
+        };
+        let product = self
+            .colP
+            .insert_one(new_doc, None)
+            .ok()
+            .expect("Error creating product");
+        Ok(product)
     }
 }
