@@ -7,11 +7,13 @@ use mongodb::{
     results::{ InsertOneResult},
     sync::{Client, Collection},
 };
+
 use crate::models::{user_model::User, product_model::Product};
 
 pub struct MongoRepo {
     col_user: Collection<User>,
     col_product: Collection<Product>
+
 }
 
 impl MongoRepo {
@@ -26,6 +28,7 @@ impl MongoRepo {
         let col_user: Collection<User> = db.collection("User");
         let col_product: Collection<Product> = db.collection("Product");
         MongoRepo { col_user, col_product }
+
     }
 
     pub fn create_user(&self, new_user: User) -> Result<InsertOneResult, Error> {
@@ -43,6 +46,7 @@ impl MongoRepo {
         Ok(user)
     }
 
+
     pub fn get_products(&self) -> Result<Vec<Product>, Error> {
 
         let cursors = self
@@ -52,5 +56,25 @@ impl MongoRepo {
             .expect("Error getting list of products");
         let users = cursors.map(|doc| doc.unwrap()).collect();
         Ok(users)
+    }
+
+
+    pub fn create_product(&self, new_product: Product) -> Result<InsertOneResult, Error> {
+        let new_doc = Product {
+            id: None,
+            productname: new_product.productname,
+            description: new_product.description,
+            price: new_product.price,
+            location: new_product.location,
+            produceradress: new_product.produceradress,
+            shopimg: new_product.shopimg
+        };
+        let product = self
+            .col_product
+            .insert_one(new_doc, None)
+            .ok()
+            .expect("Error creating product");
+        Ok(product)
+
     }
 }
