@@ -2,6 +2,7 @@ use std::env;
 extern crate dotenv;
 use dotenv::dotenv;
 
+use geojson::GeoJson;
 use mongodb::{
     bson::{extjson::de::Error, doc},
     results::{ InsertOneResult},
@@ -34,9 +35,16 @@ impl MongoRepo {
     pub fn create_user(&self, new_user: User) -> Result<InsertOneResult, Error> {
         let new_doc = User {
             id: None,
-            name: new_user.name,
-            location: new_user.location,
-            title: new_user.title,
+            lastName: new_user.lastName.to_owned(),
+            firstName: new_user.firstName.to_owned(),
+            email: new_user.email.to_owned(),
+            telNumber: new_user.telNumber.to_owned(),
+            profilImg: new_user.profilImg.to_owned(),
+            isShop: new_user.isShop.to_owned(),
+            shopName: new_user.shopName.to_owned(),
+            shopDescription: new_user.shopDescription.to_owned(),
+            shopAdress: new_user.shopAdress.to_owned(),
+            location: new_user.location
         };
         let user = self
             .col_user
@@ -44,6 +52,18 @@ impl MongoRepo {
             .ok()
             .expect("Error creating user");
         Ok(user)
+    }
+
+    pub fn get_shops(&self) -> Result<Vec<User>, Error> {
+
+        let cursor = self
+            .col_user
+            .find(doc!{"isShop": true}, None)
+            .ok()
+            .expect("Error getting list of products");
+
+        let users = cursor.map(|doc| doc.unwrap()).collect();
+        Ok(users)
     }
 
 

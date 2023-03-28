@@ -26,7 +26,7 @@ pub fn create_product(
     let data = Product {
         id: None,
         productname: new_product.productname.to_owned(),
-        location: loc,
+        location:loc,
         description: new_product.description.to_owned(),
         price: new_product.price.to_owned(),
         produceradress: new_product.produceradress.to_owned(),

@@ -1,7 +1,9 @@
+
+
 use mongodb::bson::oid::ObjectId;
 use serde::{Serialize, Deserialize};
-use super::location_models::Location;
 
+use super::location_models::Location;
 
 
 #[derive(Debug, Serialize, Deserialize)]
