@@ -32,6 +32,7 @@ pub fn create_user(
         };
         
     } else {
+        
         loc = Location {
             Location_type: new_user.location.Location_type.to_owned(),
             Location_coordinates: new_user.location.Location_coordinates.to_owned()
@@ -40,11 +41,11 @@ pub fn create_user(
     
         data = User {
             id: None,
-            lastName: new_user.lastName.to_owned(),
-            firstName: new_user.firstName.to_owned(),
-            email: new_user.email.to_owned(),
-            telNumber: new_user.telNumber.to_owned(),
-            profilImg: new_user.profilImg.to_owned(),
+            lastName: String::from("None"),
+            firstName: String::from("None"),
+            email: String::from("None"),
+            telNumber: String::from("None"),
+            profilImg: String::from("None"),
             isShop: new_user.isShop.to_owned(),
             shopName: new_user.shopName.to_owned(),
             shopDescription: new_user.shopDescription.to_owned(),
