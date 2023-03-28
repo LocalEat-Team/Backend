@@ -29,8 +29,8 @@ pub fn create_product(
         location:loc,
         description: new_product.description.to_owned(),
         price: new_product.price.to_owned(),
-        produceradress: new_product.produceradress.to_owned(),
-        shopimg: new_product.shopimg.to_owned()
+        produceradress: new_product.produceradress.to_owned()
+       
     };
     let product_detail = db.create_product(data);
     match product_detail {

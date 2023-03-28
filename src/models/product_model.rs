@@ -14,6 +14,6 @@ pub struct Product {
     pub location: Location,
     pub description: String,
     pub price: String,
-    pub produceradress: String,
-    pub shopimg: String
+    pub produceradress: String
+    
 }
