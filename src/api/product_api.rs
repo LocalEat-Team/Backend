@@ -16,11 +16,6 @@ pub fn get_all_products(db: &State<MongoRepo>) -> Result<Json<Vec<Product>>, Sta
         Err(_) => Err(Status::InternalServerError),
     }
 }
-#[derive(Deserialize, Debug)]
-struct User {
-    login: String,
-    id: u32,
-}
 
 #[get("/items/productsinfo/<codeBar>")]
 pub async fn get_info_products(db: &State<MongoRepo>, codeBar: &str) -> String {
