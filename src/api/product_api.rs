@@ -22,14 +22,11 @@ struct User {
     id: u32,
 }
 
-// #[get("/items/productsinfo/<codeBar>")]
-// pub async get_info_products(db: &State<MongoRepo>, codeBar: &str) -> _ {
+#[get("/items/productsinfo/<codeBar>")]
+pub async fn get_info_products(db: &State<MongoRepo>, codeBar: &str) -> String {
 
-//         let body = reqwest::blocking::get("https://www.rust-lang.org")?
-//         .text()?;
-
-//         println!("body = {:?}", body);
-//     }
+    return reqwest::get(format!("https://world.openfoodfacts.org/api/v0/product/{}.json", codeBar)).await.unwrap().text().await.unwrap();
+}
 
 
 #[post("/items/products", data = "<new_product>")]

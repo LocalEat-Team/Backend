@@ -10,7 +10,7 @@ use api::user_api::create_user;
 use api::user_api::get_all_shops;
 use api::product_api::get_all_products;
 use api::product_api::create_product;
-//use api::product_api::get_info_products;
+use api::product_api::get_info_products;
 use repository::mongodb_repo::MongoRepo;
 use rocket::{http::{Method, Header}, fairing::{Fairing, Info, Kind}, Request, Response};
 
@@ -33,7 +33,7 @@ fn rocket() -> _ {
         .mount("/", routes![get_all_products])
         .mount("/", routes![create_product])
         .mount("/", routes![get_all_shops])
-        //.mount("/", routes![get_info_products])
+        .mount("/", routes![get_info_products])
 
         
 }
