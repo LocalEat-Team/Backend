@@ -85,8 +85,8 @@ impl MongoRepo {
             productname: new_product.productname,
             description: new_product.description,
             price: new_product.price,
-            location: new_product.location,
-            produceradress: new_product.produceradress
+            produceradress: new_product.produceradress,
+            productimg: new_product.productimg
            
         };
         let product = self
